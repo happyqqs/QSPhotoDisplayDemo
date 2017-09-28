@@ -13,6 +13,9 @@
 		8A15CC3E1F7B772A000F6FAE /* QSPhotoCheckView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A15CC3D1F7B772A000F6FAE /* QSPhotoCheckView.m */; };
 		8A15CC411F7B7BE8000F6FAE /* UIImage+QS_Gif.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A15CC401F7B7BE8000F6FAE /* UIImage+QS_Gif.m */; };
 		8A15CC441F7BE76C000F6FAE /* QSExifModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A15CC431F7BE76B000F6FAE /* QSExifModel.m */; };
+		8A15CC471F7C97FC000F6FAE /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A15CC461F7C97FC000F6FAE /* ImageIO.framework */; };
+		8A15CC491F7C9805000F6FAE /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A15CC481F7C9805000F6FAE /* Photos.framework */; };
+		8A15CC4C1F7C9CCB000F6FAE /* QSPhotoExifInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A15CC4B1F7C9CCB000F6FAE /* QSPhotoExifInfoViewController.m */; };
 		8A6875EF1F7A57FD00C65756 /* QSAlbumModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6875EE1F7A57FD00C65756 /* QSAlbumModel.m */; };
 		8A6875F21F7A660900C65756 /* QSPhotoDisplayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6875F11F7A660900C65756 /* QSPhotoDisplayCell.m */; };
 		8A6875F51F7A6A9800C65756 /* QSAlbumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6875F41F7A6A9800C65756 /* QSAlbumCell.m */; };
@@ -26,7 +29,6 @@
 		8A955E481F79F02F000B96B7 /* QSAssetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A955E471F79F02F000B96B7 /* QSAssetModel.m */; };
 		8AF24D1E1F7A32D100508EBF /* QSPhotosDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF24D1D1F7A32D100508EBF /* QSPhotosDisplayViewController.m */; };
 		8AF24D231F7A332500508EBF /* QSAlbumsDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF24D221F7A332500508EBF /* QSAlbumsDisplayViewController.m */; };
-		8AF24D261F7A335800508EBF /* QSPhotoExifInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF24D251F7A335800508EBF /* QSPhotoExifInfoViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,10 @@
 		8A15CC401F7B7BE8000F6FAE /* UIImage+QS_Gif.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+QS_Gif.m"; sourceTree = "<group>"; };
 		8A15CC421F7BE76B000F6FAE /* QSExifModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSExifModel.h; sourceTree = "<group>"; };
 		8A15CC431F7BE76B000F6FAE /* QSExifModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSExifModel.m; sourceTree = "<group>"; };
+		8A15CC461F7C97FC000F6FAE /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		8A15CC481F7C9805000F6FAE /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		8A15CC4A1F7C9CCB000F6FAE /* QSPhotoExifInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSPhotoExifInfoViewController.h; sourceTree = "<group>"; };
+		8A15CC4B1F7C9CCB000F6FAE /* QSPhotoExifInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSPhotoExifInfoViewController.m; sourceTree = "<group>"; };
 		8A6875ED1F7A57FD00C65756 /* QSAlbumModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSAlbumModel.h; sourceTree = "<group>"; };
 		8A6875EE1F7A57FD00C65756 /* QSAlbumModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSAlbumModel.m; sourceTree = "<group>"; };
 		8A6875F01F7A660900C65756 /* QSPhotoDisplayCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSPhotoDisplayCell.h; sourceTree = "<group>"; };
@@ -87,8 +93,6 @@
 		8AF24D1D1F7A32D100508EBF /* QSPhotosDisplayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSPhotosDisplayViewController.m; sourceTree = "<group>"; };
 		8AF24D211F7A332500508EBF /* QSAlbumsDisplayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSAlbumsDisplayViewController.h; sourceTree = "<group>"; };
 		8AF24D221F7A332500508EBF /* QSAlbumsDisplayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSAlbumsDisplayViewController.m; sourceTree = "<group>"; };
-		8AF24D241F7A335800508EBF /* QSPhotoExifInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSPhotoExifInfoViewController.h; sourceTree = "<group>"; };
-		8AF24D251F7A335800508EBF /* QSPhotoExifInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSPhotoExifInfoViewController.m; sourceTree = "<group>"; };
 		8AF24D2C1F7A3AF900508EBF /* QSPhotoDisplayMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSPhotoDisplayMacro.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,6 +101,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A15CC491F7C9805000F6FAE /* Photos.framework in Frameworks */,
+				8A15CC471F7C97FC000F6FAE /* ImageIO.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,6 +123,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8A15CC451F7C97FB000F6FAE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8A15CC481F7C9805000F6FAE /* Photos.framework */,
+				8A15CC461F7C97FC000F6FAE /* ImageIO.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8A6875F61F7A6D8700C65756 /* Category */ = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +152,7 @@
 				8A955E281F79E7AA000B96B7 /* QSPhotoDisplayDemoTests */,
 				8A955E331F79E7AA000B96B7 /* QSPhotoDisplayDemoUITests */,
 				8A955E0E1F79E7AA000B96B7 /* Products */,
+				8A15CC451F7C97FB000F6FAE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -209,8 +225,8 @@
 				8A15CC371F7B6BF4000F6FAE /* QSPhotoCheckViewController.m */,
 				8AF24D211F7A332500508EBF /* QSAlbumsDisplayViewController.h */,
 				8AF24D221F7A332500508EBF /* QSAlbumsDisplayViewController.m */,
-				8AF24D241F7A335800508EBF /* QSPhotoExifInfoViewController.h */,
-				8AF24D251F7A335800508EBF /* QSPhotoExifInfoViewController.m */,
+				8A15CC4A1F7C9CCB000F6FAE /* QSPhotoExifInfoViewController.h */,
+				8A15CC4B1F7C9CCB000F6FAE /* QSPhotoExifInfoViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -373,10 +389,10 @@
 				8AF24D231F7A332500508EBF /* QSAlbumsDisplayViewController.m in Sources */,
 				8A6875F51F7A6A9800C65756 /* QSAlbumCell.m in Sources */,
 				8A955E451F79EED0000B96B7 /* QSPhotoManager.m in Sources */,
-				8AF24D261F7A335800508EBF /* QSPhotoExifInfoViewController.m in Sources */,
 				8A955E481F79F02F000B96B7 /* QSAssetModel.m in Sources */,
 				8AF24D1E1F7A32D100508EBF /* QSPhotosDisplayViewController.m in Sources */,
 				8A955E201F79E7AA000B96B7 /* main.m in Sources */,
+				8A15CC4C1F7C9CCB000F6FAE /* QSPhotoExifInfoViewController.m in Sources */,
 				8A6875F91F7A6DE900C65756 /* UIView+QS_Layout.m in Sources */,
 				8A15CC381F7B6BF4000F6FAE /* QSPhotoCheckViewController.m in Sources */,
 				8A955E121F79E7AA000B96B7 /* AppDelegate.m in Sources */,

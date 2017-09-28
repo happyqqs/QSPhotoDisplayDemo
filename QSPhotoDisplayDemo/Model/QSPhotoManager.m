@@ -11,6 +11,7 @@
 #import <ImageIO/ImageIO.h>
 #import "QSPhotoDisplayMacro.h"
 #import "QSAlbumModel.h"
+#import "QSExifModel.h"
 #import "NSString+QS_Extension.h"
 
 @interface QSPhotoManager () {
@@ -46,8 +47,8 @@
     return status;
 }
 
-- (void)requestAuthorizationWithCompletion:(void (^)())completion {
-    void (^callCompletionBlock)() = ^() {
+- (void)requestAuthorizationWithCompletion:(void (^)(void))completion {
+    void (^callCompletionBlock)(void) = ^() {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (completion) {
                 completion();
@@ -275,7 +276,9 @@
     int32_t imageRequestID = [[PHImageManager defaultManager] requestImageDataForAsset:asset options:option resultHandler:^(NSData *imageData, NSString *dataUTI, UIImageOrientation orientation, NSDictionary *info) {
         BOOL downloadFinined = (![[info objectForKey:PHImageCancelledKey] boolValue] && ![info objectForKey:PHImageErrorKey]);
         if (downloadFinined && imageData) {
-            if (completion) completion(imageData,info,NO);
+            if (completion) {
+                completion(imageData,info,NO);
+            }
         }
     }];
     return imageRequestID;
@@ -283,12 +286,17 @@
 
 #pragma mark - Get Exif Info
 
-- (NSDictionary *)getExifInfoWithFileUrl:(NSString *)fileUrl {
-    NSURL *url = [NSURL URLWithString:fileUrl];
-    CGImageSourceRef imageSource = CGImageSourceCreateWithURL((CFURLRef)url, NULL);
-    CFDictionaryRef imageInfo = CGImageSourceCopyPropertiesAtIndex(imageSource, 0,NULL);
-    NSDictionary *exifDic = (__bridge NSDictionary *)CFDictionaryGetValue(imageInfo, kCGImagePropertyExifDictionary) ;
-    return exifDic;
+- (QSExifModel *)getExifModelWithAsset:(PHAsset *)asset {
+    PHImageRequestOptions *option = [[PHImageRequestOptions alloc] init];
+    option.networkAccessAllowed = YES;
+    __block QSExifModel *model;
+    [[PHImageManager defaultManager] requestImageDataForAsset:asset options:option resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
+        CGImageSourceRef cImageSource = CGImageSourceCreateWithData((__bridge CFDataRef)imageData, NULL);
+        NSDictionary *dict =  (NSDictionary *)CFBridgingRelease(CGImageSourceCopyPropertiesAtIndex(cImageSource, 0, NULL));
+        NSMutableDictionary *exifInfo = [NSMutableDictionary dictionaryWithDictionary:dict];
+        model = [QSExifModel modelWithExifInfo:exifInfo];
+    }];
+    return model;
 }
 
 #pragma mark - Get Asset Type
@@ -328,6 +336,7 @@
     QSAssetType type = [self getAssetType:asset];
     NSString *timeLength = type == QSAssetTypeVideo ? [NSString stringWithFormat:@"%0.0f",asset.duration] : @"";
     timeLength = [self p_getNewTimeFromDurationSecond:timeLength.integerValue];
+    
     model = [QSAssetModel modelWithAsset:asset type:type timeLength:timeLength];
     return model;
 }
@@ -360,11 +369,9 @@
 /// 修正图片转向
 - (UIImage *)p_fixOrientation:(UIImage *)aImage {
     if (!self.shouldFixOrientation) return aImage;
-    
     // No-op if the orientation is already correct
     if (aImage.imageOrientation == UIImageOrientationUp)
         return aImage;
-    
     // We need to calculate the proper transformation to make the image upright.
     // We do it in 2 steps: Rotate if Left/Right/Down, and then flip if Mirrored.
     CGAffineTransform transform = CGAffineTransformIdentity;
@@ -390,7 +397,6 @@
         default:
             break;
     }
-    
     switch (aImage.imageOrientation) {
         case UIImageOrientationUpMirrored:
         case UIImageOrientationDownMirrored:

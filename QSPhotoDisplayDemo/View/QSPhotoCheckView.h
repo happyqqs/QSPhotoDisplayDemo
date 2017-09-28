@@ -16,10 +16,11 @@
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIView *imageContainerView;
-@property (nonatomic, strong) QSAssetModel *assetModel;
 @property (nonatomic, strong) PHAsset *asset;
-@property (nonatomic, copy) void (^singleTapGestureBlock)();
+@property (nonatomic, strong) QSAssetModel *assetModel;
 @property (nonatomic, assign) int32_t imageRequestID;
+
+@property (nonatomic, copy) void (^singleTapGestureBlock)(void);
 
 - (void)recoverSubviews;
 

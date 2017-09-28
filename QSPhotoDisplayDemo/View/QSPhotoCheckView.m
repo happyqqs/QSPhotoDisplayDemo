@@ -60,7 +60,6 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     _scrollView.frame = CGRectMake(10, 0, self.qs_width - 20, self.qs_height);
-    static CGFloat progressWH = 40;    
     [self recoverSubviews];
 }
 
@@ -167,6 +166,7 @@
     self.imageRequestID = [[QSPhotoManager manager] getOriginalPhotoWithAsset:asset completion:^(UIImage *photo, NSDictionary *info) {
         if (![asset isEqual:_asset]) return;
         self.imageView.image = photo;
+        self.assetModel.fileUrl = [info objectForKey:@"PHImageFileURLKey"];
         [self p_resizeSubviews];
     }];
 }

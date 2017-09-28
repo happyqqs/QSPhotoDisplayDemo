@@ -11,7 +11,7 @@
 #import <Photos/Photos.h>
 #import "QSAssetModel.h"
 
-@class QSAlbumModel;
+@class QSAlbumModel, QSExifModel;
 
 @interface QSPhotoManager : NSObject
 
@@ -26,7 +26,7 @@
 
 - (BOOL)hasAuthorized;
 + (NSInteger)authorizationStatus;
-- (void)requestAuthorizationWithCompletion:(void (^)())completion;
+- (void)requestAuthorizationWithCompletion:(void (^)(void))completion;
 
 #pragma mark - Get Albums
 - (void)getCameraRollAlbumWithCompletion:(void (^)(QSAlbumModel *model))completion;
@@ -35,6 +35,7 @@
 #pragma mark - Get Assets
 - (void)getAssetFromFetchResult:(PHFetchResult *)fetchResult atIndex:(NSInteger)index completion:(void (^)(QSAssetModel *model))completion;
 - (void)getAssetsFromFetchResult:(PHFetchResult *)fetchResult completion:(void (^)(NSArray<QSAssetModel *> *models))completion;
+- (QSAssetType)getAssetType:(PHAsset *)asset;
 
 #pragma mark - Get Photo
 - (void)getPostImageWithAlbumModel:(QSAlbumModel *)model completion:(void (^)(UIImage *))completion;
@@ -50,11 +51,7 @@
 // 该方法中，completion只会走一次
 - (int32_t)getOriginalPhotoDataWithAsset:(PHAsset *)asset completion:(void (^)(NSData *data,NSDictionary *info,BOOL isDegraded))completion;
 
-/// Get photo bytes 获得一组照片的大小
-- (void)getPhotosBytesWithArray:(NSArray *)photos completion:(void (^)(NSString *totalBytes))completion;
-
-- (QSAssetType)getAssetType:(PHAsset *)asset;
-
-- (NSDictionary *)getExifInfoWithFileUrl:(NSString *)fileUrl;
+#pragma mark - Get Exif
+- (QSExifModel *)getExifModelWithAsset:(PHAsset *)asset;
 
 @end

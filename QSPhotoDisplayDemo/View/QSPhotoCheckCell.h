@@ -15,7 +15,7 @@
 
 @property (nonatomic, strong) QSAssetModel *assetModel;
 @property (nonatomic, strong) QSPhotoCheckView *checkView;
-@property (nonatomic, copy) void (^singleTapGestureBlock)();
+@property (nonatomic, copy) void (^singleTapGestureBlock)(void);
 
 - (void)configSubviews;
 - (void)photoPreviewCollectionViewDidScroll;

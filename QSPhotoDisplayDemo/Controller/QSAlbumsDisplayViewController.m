@@ -80,6 +80,8 @@ static const NSInteger defaultColumnNumber = 4;
     [self.navigationController showViewController:photoDisplayVC sender:nil];
 }
 
+#pragma mark - Setter && Getter
+
 - (NSInteger)columnNumber {
     if (_columnNumber == 0) {
         return defaultColumnNumber;

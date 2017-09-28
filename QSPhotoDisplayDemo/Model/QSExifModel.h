@@ -10,6 +10,15 @@
 
 @interface QSExifModel : UIView
 
-@property (nonatomic, copy) NSString *fileUrl;
+@property (nonatomic, copy) NSString *colorModel;
+@property (nonatomic, copy) NSString *profileName;
+@property (nonatomic, assign) NSUInteger dpiHeight;
+@property (nonatomic, assign) NSUInteger dpiWidth;
+@property (nonatomic, assign) NSUInteger orientation;
+@property (nonatomic, assign) NSUInteger pixelHeight;
+@property (nonatomic, assign) NSUInteger pixelWidth;
+@property (nonatomic, assign) NSUInteger depth;
+
++ (instancetype)modelWithExifInfo:(NSDictionary *)exifInfo;
 
 @end

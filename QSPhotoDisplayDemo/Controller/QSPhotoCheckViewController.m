@@ -11,6 +11,7 @@
 #import "QSPhotoCheckCell.h"
 #import "QSPhotoManager.h"
 #import "QSAssetModel.h"
+#import "QSExifModel.h"
 #import "UIView+QS_Layout.h"
 #import "QSPhotoDisplayMacro.h"
 
@@ -106,7 +107,7 @@ static NSString *photoCheckCellReuseIdentifier = @"QSPhotoCheckCell";
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
-
+    _currentIndex = indexPath.row;
 }
 
 #pragma mark - Private Functions
@@ -136,6 +137,7 @@ static NSString *photoCheckCellReuseIdentifier = @"QSPhotoCheckCell";
 
 - (void)checkExifInfo {
     QSPhotoExifInfoViewController *exifInfoVC = [[QSPhotoExifInfoViewController alloc] init];
+    exifInfoVC.exifModel = [[QSPhotoManager manager] getExifModelWithAsset:_assetModels[_currentIndex].asset];
     [self.navigationController showViewController:exifInfoVC sender:nil];
 }
 

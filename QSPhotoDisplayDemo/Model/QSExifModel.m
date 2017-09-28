@@ -10,4 +10,11 @@
 
 @implementation QSExifModel
 
++ (instancetype)modelWithExifInfo:(NSDictionary *)exifInfo {
+    NSLog(@"Exif info: %@", exifInfo);
+    QSExifModel *model = [[QSExifModel alloc] init];
+    
+    return model;
+}
+
 @end

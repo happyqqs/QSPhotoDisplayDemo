@@ -23,14 +23,11 @@ typedef NS_ENUM(NSUInteger, QSAssetType) {
 @property (nonatomic, assign) QSAssetType type;
 @property (nonatomic, strong) PHAsset *asset;
 @property (nonatomic, copy) NSString *timeLength;
+@property (nonatomic, copy) NSURL *fileUrl;
 
 ///Init a photo dataModel With a asset
 + (instancetype)modelWithAsset:(PHAsset *)asset type:(QSAssetType)type;
 + (instancetype)modelWithAsset:(PHAsset *)asset type:(QSAssetType)type timeLength:(NSString *)timeLength;
-
-@end
-
-@interface QSExifModel : NSObject
 
 @end
 

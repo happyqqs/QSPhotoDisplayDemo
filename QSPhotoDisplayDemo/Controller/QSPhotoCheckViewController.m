@@ -42,7 +42,6 @@ static NSString *photoCheckCellReuseIdentifier = @"QSPhotoCheckCell";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
     if (!QS_isGlobalStatusBarHidden) {
         [UIApplication sharedApplication].statusBarHidden = YES;
     }
@@ -53,7 +52,6 @@ static NSString *photoCheckCellReuseIdentifier = @"QSPhotoCheckCell";
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
     if (!QS_isGlobalStatusBarHidden) {
         [UIApplication sharedApplication].statusBarHidden = NO;
     }
@@ -137,8 +135,18 @@ static NSString *photoCheckCellReuseIdentifier = @"QSPhotoCheckCell";
 
 - (void)checkExifInfo {
     QSPhotoExifInfoViewController *exifInfoVC = [[QSPhotoExifInfoViewController alloc] init];
-    exifInfoVC.exifModel = [[QSPhotoManager manager] getExifModelWithAsset:_assetModels[_currentIndex].asset];
-    [self.navigationController showViewController:exifInfoVC sender:nil];
+    __weak typeof(self) weakSelf = self;
+    QSAssetModel *assetModel = _assetModels[_currentIndex];
+    if (assetModel.exifModel == nil) {
+        [[QSPhotoManager manager] getExifModelWithAsset:assetModel.asset completion:^(QSExifModel *exifModel) {
+            exifInfoVC.exifModel = exifModel;
+            assetModel.exifModel = exifModel;
+            [weakSelf.navigationController showViewController:exifInfoVC sender:nil];
+        }];
+    } else {
+        exifInfoVC.exifModel = assetModel.exifModel;
+        [self.navigationController showViewController:exifInfoVC sender:nil];
+    }
 }
 
 @end

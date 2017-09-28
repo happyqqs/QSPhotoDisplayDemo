@@ -8,7 +8,6 @@
 
 #import "QSPhotoManager.h"
 #import <AssetsLibrary/AssetsLibrary.h>
-#import <ImageIO/ImageIO.h>
 #import "QSPhotoDisplayMacro.h"
 #import "QSAlbumModel.h"
 #import "QSExifModel.h"
@@ -72,7 +71,6 @@
     }
     PHFetchResult *smartAlbums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
     for (PHAssetCollection *collection in smartAlbums) {
-        // 有可能是PHCollectionList类的的对象，过滤掉
         if (![collection isKindOfClass:[PHAssetCollection class]]) continue;
         if ([self p_isCameraRollAlbum:collection]) {
             PHFetchResult *fetchResult = [PHAsset fetchAssetsInAssetCollection:collection options:option];
@@ -195,7 +193,7 @@
     }
     
     __block UIImage *image;
-    // 修复获取图片时出现的瞬间内存过高问题
+    //
     PHImageRequestOptions *option = [[PHImageRequestOptions alloc] init];
     option.resizeMode = PHImageRequestOptionsResizeModeFast;
     int32_t imageRequestID = [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:imageSize contentMode:PHImageContentModeAspectFill options:option resultHandler:^(UIImage *result, NSDictionary *info) {
@@ -245,7 +243,7 @@
     }];
 }
 
-/// Get Original Photo / 获取原图
+/// Get Original Photo
 - (int32_t)getOriginalPhotoWithAsset:(PHAsset *)asset completion:(void (^)(UIImage *photo,NSDictionary *info))completion {
     return [self getOriginalPhotoWithAsset:asset newCompletion:^(UIImage *photo, NSDictionary *info, BOOL isDegraded) {
         if (completion) {
@@ -286,17 +284,21 @@
 
 #pragma mark - Get Exif Info
 
-- (QSExifModel *)getExifModelWithAsset:(PHAsset *)asset {
+- (void)getExifModelWithAsset:(PHAsset *)asset completion:(void (^)(QSExifModel *exifModel)) completion{
     PHImageRequestOptions *option = [[PHImageRequestOptions alloc] init];
     option.networkAccessAllowed = YES;
-    __block QSExifModel *model;
+    
     [[PHImageManager defaultManager] requestImageDataForAsset:asset options:option resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
         CGImageSourceRef cImageSource = CGImageSourceCreateWithData((__bridge CFDataRef)imageData, NULL);
         NSDictionary *dict =  (NSDictionary *)CFBridgingRelease(CGImageSourceCopyPropertiesAtIndex(cImageSource, 0, NULL));
         NSMutableDictionary *exifInfo = [NSMutableDictionary dictionaryWithDictionary:dict];
-        model = [QSExifModel modelWithExifInfo:exifInfo];
+        QSExifModel *model = [QSExifModel modelWithExifInfo:exifInfo];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (completion) {
+                completion(model);
+            }
+        });
     }];
-    return model;
 }
 
 #pragma mark - Get Asset Type

@@ -12,8 +12,8 @@
 
 @interface QSAlbumModel : NSObject
 
-@property (nonatomic, copy) NSString *name;        ///< The album name
-@property (nonatomic, assign) NSInteger count;       ///< Count of photos the album contain
+@property (nonatomic, copy) NSString *name;       
+@property (nonatomic, assign) NSInteger count;
 @property (nonatomic, strong) PHFetchResult *fetchResult;             
 @property (nonatomic, copy) NSArray<QSAssetModel *> *assetModels;
 @property (nonatomic, assign) BOOL isCameraRoll;

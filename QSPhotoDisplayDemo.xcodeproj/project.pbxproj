@@ -16,6 +16,7 @@
 		8A15CC471F7C97FC000F6FAE /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A15CC461F7C97FC000F6FAE /* ImageIO.framework */; };
 		8A15CC491F7C9805000F6FAE /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A15CC481F7C9805000F6FAE /* Photos.framework */; };
 		8A15CC4C1F7C9CCB000F6FAE /* QSPhotoExifInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A15CC4B1F7C9CCB000F6FAE /* QSPhotoExifInfoViewController.m */; };
+		8A15CC521F7CC579000F6FAE /* NSObject+QS_DicToModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A15CC511F7CC579000F6FAE /* NSObject+QS_DicToModel.m */; };
 		8A6875EF1F7A57FD00C65756 /* QSAlbumModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6875EE1F7A57FD00C65756 /* QSAlbumModel.m */; };
 		8A6875F21F7A660900C65756 /* QSPhotoDisplayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6875F11F7A660900C65756 /* QSPhotoDisplayCell.m */; };
 		8A6875F51F7A6A9800C65756 /* QSAlbumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6875F41F7A6A9800C65756 /* QSAlbumCell.m */; };
@@ -27,6 +28,7 @@
 		8A955E351F79E7AA000B96B7 /* QSPhotoDisplayDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A955E341F79E7AA000B96B7 /* QSPhotoDisplayDemoUITests.m */; };
 		8A955E451F79EED0000B96B7 /* QSPhotoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A955E441F79EED0000B96B7 /* QSPhotoManager.m */; };
 		8A955E481F79F02F000B96B7 /* QSAssetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A955E471F79F02F000B96B7 /* QSAssetModel.m */; };
+		8AACA4471F7D26FC00546BAB /* NSArray+QS_Description.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AACA4461F7D26FC00546BAB /* NSArray+QS_Description.m */; };
 		8AF24D1E1F7A32D100508EBF /* QSPhotosDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF24D1D1F7A32D100508EBF /* QSPhotosDisplayViewController.m */; };
 		8AF24D231F7A332500508EBF /* QSAlbumsDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF24D221F7A332500508EBF /* QSAlbumsDisplayViewController.m */; };
 /* End PBXBuildFile section */
@@ -65,6 +67,8 @@
 		8A15CC481F7C9805000F6FAE /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		8A15CC4A1F7C9CCB000F6FAE /* QSPhotoExifInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSPhotoExifInfoViewController.h; sourceTree = "<group>"; };
 		8A15CC4B1F7C9CCB000F6FAE /* QSPhotoExifInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSPhotoExifInfoViewController.m; sourceTree = "<group>"; };
+		8A15CC501F7CC579000F6FAE /* NSObject+QS_DicToModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+QS_DicToModel.h"; sourceTree = "<group>"; };
+		8A15CC511F7CC579000F6FAE /* NSObject+QS_DicToModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+QS_DicToModel.m"; sourceTree = "<group>"; };
 		8A6875ED1F7A57FD00C65756 /* QSAlbumModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSAlbumModel.h; sourceTree = "<group>"; };
 		8A6875EE1F7A57FD00C65756 /* QSAlbumModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSAlbumModel.m; sourceTree = "<group>"; };
 		8A6875F01F7A660900C65756 /* QSPhotoDisplayCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSPhotoDisplayCell.h; sourceTree = "<group>"; };
@@ -89,6 +93,8 @@
 		8A955E441F79EED0000B96B7 /* QSPhotoManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSPhotoManager.m; sourceTree = "<group>"; };
 		8A955E461F79F02F000B96B7 /* QSAssetModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSAssetModel.h; sourceTree = "<group>"; };
 		8A955E471F79F02F000B96B7 /* QSAssetModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSAssetModel.m; sourceTree = "<group>"; };
+		8AACA4451F7D26FC00546BAB /* NSArray+QS_Description.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+QS_Description.h"; sourceTree = "<group>"; };
+		8AACA4461F7D26FC00546BAB /* NSArray+QS_Description.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+QS_Description.m"; sourceTree = "<group>"; };
 		8AF24D1C1F7A32D100508EBF /* QSPhotosDisplayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSPhotosDisplayViewController.h; sourceTree = "<group>"; };
 		8AF24D1D1F7A32D100508EBF /* QSPhotosDisplayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSPhotosDisplayViewController.m; sourceTree = "<group>"; };
 		8AF24D211F7A332500508EBF /* QSAlbumsDisplayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSAlbumsDisplayViewController.h; sourceTree = "<group>"; };
@@ -141,6 +147,10 @@
 				8A15CC341F7B4AE7000F6FAE /* NSString+QS_Extension.m */,
 				8A15CC3F1F7B7BE8000F6FAE /* UIImage+QS_Gif.h */,
 				8A15CC401F7B7BE8000F6FAE /* UIImage+QS_Gif.m */,
+				8A15CC501F7CC579000F6FAE /* NSObject+QS_DicToModel.h */,
+				8A15CC511F7CC579000F6FAE /* NSObject+QS_DicToModel.m */,
+				8AACA4451F7D26FC00546BAB /* NSArray+QS_Description.h */,
+				8AACA4461F7D26FC00546BAB /* NSArray+QS_Description.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -388,9 +398,11 @@
 				8A15CC411F7B7BE8000F6FAE /* UIImage+QS_Gif.m in Sources */,
 				8AF24D231F7A332500508EBF /* QSAlbumsDisplayViewController.m in Sources */,
 				8A6875F51F7A6A9800C65756 /* QSAlbumCell.m in Sources */,
+				8A15CC521F7CC579000F6FAE /* NSObject+QS_DicToModel.m in Sources */,
 				8A955E451F79EED0000B96B7 /* QSPhotoManager.m in Sources */,
 				8A955E481F79F02F000B96B7 /* QSAssetModel.m in Sources */,
 				8AF24D1E1F7A32D100508EBF /* QSPhotosDisplayViewController.m in Sources */,
+				8AACA4471F7D26FC00546BAB /* NSArray+QS_Description.m in Sources */,
 				8A955E201F79E7AA000B96B7 /* main.m in Sources */,
 				8A15CC4C1F7C9CCB000F6FAE /* QSPhotoExifInfoViewController.m in Sources */,
 				8A6875F91F7A6DE900C65756 /* UIView+QS_Layout.m in Sources */,

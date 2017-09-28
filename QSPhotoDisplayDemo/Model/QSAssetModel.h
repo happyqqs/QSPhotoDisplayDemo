@@ -16,14 +16,14 @@ typedef NS_ENUM(NSUInteger, QSAssetType) {
     QSAssetTypeAudio
 };
 
-@class PHAsset;
+@class PHAsset, QSExifModel;
 
 @interface QSAssetModel : NSObject
 
 @property (nonatomic, assign) QSAssetType type;
 @property (nonatomic, strong) PHAsset *asset;
 @property (nonatomic, copy) NSString *timeLength;
-@property (nonatomic, copy) NSURL *fileUrl;
+@property (nonatomic, strong) QSExifModel *exifModel;
 
 ///Init a photo dataModel With a asset
 + (instancetype)modelWithAsset:(PHAsset *)asset type:(QSAssetType)type;

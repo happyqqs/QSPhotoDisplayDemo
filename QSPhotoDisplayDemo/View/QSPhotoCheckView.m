@@ -166,7 +166,6 @@
     self.imageRequestID = [[QSPhotoManager manager] getOriginalPhotoWithAsset:asset completion:^(UIImage *photo, NSDictionary *info) {
         if (![asset isEqual:_asset]) return;
         self.imageView.image = photo;
-        self.assetModel.fileUrl = [info objectForKey:@"PHImageFileURLKey"];
         [self p_resizeSubviews];
     }];
 }

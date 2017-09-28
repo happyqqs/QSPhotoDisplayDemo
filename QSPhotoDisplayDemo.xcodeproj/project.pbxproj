@@ -1,0 +1,654 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8A15CC351F7B4AE8000F6FAE /* NSString+QS_Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A15CC341F7B4AE7000F6FAE /* NSString+QS_Extension.m */; };
+		8A15CC381F7B6BF4000F6FAE /* QSPhotoCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A15CC371F7B6BF4000F6FAE /* QSPhotoCheckViewController.m */; };
+		8A15CC3B1F7B755D000F6FAE /* QSPhotoCheckCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A15CC3A1F7B755D000F6FAE /* QSPhotoCheckCell.m */; };
+		8A15CC3E1F7B772A000F6FAE /* QSPhotoCheckView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A15CC3D1F7B772A000F6FAE /* QSPhotoCheckView.m */; };
+		8A15CC411F7B7BE8000F6FAE /* UIImage+QS_Gif.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A15CC401F7B7BE8000F6FAE /* UIImage+QS_Gif.m */; };
+		8A15CC441F7BE76C000F6FAE /* QSExifModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A15CC431F7BE76B000F6FAE /* QSExifModel.m */; };
+		8A6875EF1F7A57FD00C65756 /* QSAlbumModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6875EE1F7A57FD00C65756 /* QSAlbumModel.m */; };
+		8A6875F21F7A660900C65756 /* QSPhotoDisplayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6875F11F7A660900C65756 /* QSPhotoDisplayCell.m */; };
+		8A6875F51F7A6A9800C65756 /* QSAlbumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6875F41F7A6A9800C65756 /* QSAlbumCell.m */; };
+		8A6875F91F7A6DE900C65756 /* UIView+QS_Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6875F81F7A6DE900C65756 /* UIView+QS_Layout.m */; };
+		8A955E121F79E7AA000B96B7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A955E111F79E7AA000B96B7 /* AppDelegate.m */; };
+		8A955E1A1F79E7AA000B96B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A955E191F79E7AA000B96B7 /* Assets.xcassets */; };
+		8A955E201F79E7AA000B96B7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A955E1F1F79E7AA000B96B7 /* main.m */; };
+		8A955E2A1F79E7AA000B96B7 /* QSPhotoDisplayDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A955E291F79E7AA000B96B7 /* QSPhotoDisplayDemoTests.m */; };
+		8A955E351F79E7AA000B96B7 /* QSPhotoDisplayDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A955E341F79E7AA000B96B7 /* QSPhotoDisplayDemoUITests.m */; };
+		8A955E451F79EED0000B96B7 /* QSPhotoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A955E441F79EED0000B96B7 /* QSPhotoManager.m */; };
+		8A955E481F79F02F000B96B7 /* QSAssetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A955E471F79F02F000B96B7 /* QSAssetModel.m */; };
+		8AF24D1E1F7A32D100508EBF /* QSPhotosDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF24D1D1F7A32D100508EBF /* QSPhotosDisplayViewController.m */; };
+		8AF24D231F7A332500508EBF /* QSAlbumsDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF24D221F7A332500508EBF /* QSAlbumsDisplayViewController.m */; };
+		8AF24D261F7A335800508EBF /* QSPhotoExifInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF24D251F7A335800508EBF /* QSPhotoExifInfoViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8A955E261F79E7AA000B96B7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8A955E051F79E7AA000B96B7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8A955E0C1F79E7AA000B96B7;
+			remoteInfo = QSPhotoDisplayDemo;
+		};
+		8A955E311F79E7AA000B96B7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8A955E051F79E7AA000B96B7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8A955E0C1F79E7AA000B96B7;
+			remoteInfo = QSPhotoDisplayDemo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		8A15CC331F7B4AE7000F6FAE /* NSString+QS_Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+QS_Extension.h"; sourceTree = "<group>"; };
+		8A15CC341F7B4AE7000F6FAE /* NSString+QS_Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+QS_Extension.m"; sourceTree = "<group>"; };
+		8A15CC361F7B6BF4000F6FAE /* QSPhotoCheckViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSPhotoCheckViewController.h; sourceTree = "<group>"; };
+		8A15CC371F7B6BF4000F6FAE /* QSPhotoCheckViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSPhotoCheckViewController.m; sourceTree = "<group>"; };
+		8A15CC391F7B755D000F6FAE /* QSPhotoCheckCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSPhotoCheckCell.h; sourceTree = "<group>"; };
+		8A15CC3A1F7B755D000F6FAE /* QSPhotoCheckCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSPhotoCheckCell.m; sourceTree = "<group>"; };
+		8A15CC3C1F7B772A000F6FAE /* QSPhotoCheckView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSPhotoCheckView.h; sourceTree = "<group>"; };
+		8A15CC3D1F7B772A000F6FAE /* QSPhotoCheckView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSPhotoCheckView.m; sourceTree = "<group>"; };
+		8A15CC3F1F7B7BE8000F6FAE /* UIImage+QS_Gif.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+QS_Gif.h"; sourceTree = "<group>"; };
+		8A15CC401F7B7BE8000F6FAE /* UIImage+QS_Gif.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+QS_Gif.m"; sourceTree = "<group>"; };
+		8A15CC421F7BE76B000F6FAE /* QSExifModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSExifModel.h; sourceTree = "<group>"; };
+		8A15CC431F7BE76B000F6FAE /* QSExifModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSExifModel.m; sourceTree = "<group>"; };
+		8A6875ED1F7A57FD00C65756 /* QSAlbumModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSAlbumModel.h; sourceTree = "<group>"; };
+		8A6875EE1F7A57FD00C65756 /* QSAlbumModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSAlbumModel.m; sourceTree = "<group>"; };
+		8A6875F01F7A660900C65756 /* QSPhotoDisplayCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSPhotoDisplayCell.h; sourceTree = "<group>"; };
+		8A6875F11F7A660900C65756 /* QSPhotoDisplayCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSPhotoDisplayCell.m; sourceTree = "<group>"; };
+		8A6875F31F7A6A9800C65756 /* QSAlbumCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSAlbumCell.h; sourceTree = "<group>"; };
+		8A6875F41F7A6A9800C65756 /* QSAlbumCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSAlbumCell.m; sourceTree = "<group>"; };
+		8A6875F71F7A6DE900C65756 /* UIView+QS_Layout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+QS_Layout.h"; sourceTree = "<group>"; };
+		8A6875F81F7A6DE900C65756 /* UIView+QS_Layout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+QS_Layout.m"; sourceTree = "<group>"; };
+		8A955E0D1F79E7AA000B96B7 /* QSPhotoDisplayDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QSPhotoDisplayDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A955E101F79E7AA000B96B7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		8A955E111F79E7AA000B96B7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		8A955E191F79E7AA000B96B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8A955E1E1F79E7AA000B96B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8A955E1F1F79E7AA000B96B7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8A955E251F79E7AA000B96B7 /* QSPhotoDisplayDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QSPhotoDisplayDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A955E291F79E7AA000B96B7 /* QSPhotoDisplayDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSPhotoDisplayDemoTests.m; sourceTree = "<group>"; };
+		8A955E2B1F79E7AA000B96B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8A955E301F79E7AA000B96B7 /* QSPhotoDisplayDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QSPhotoDisplayDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A955E341F79E7AA000B96B7 /* QSPhotoDisplayDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSPhotoDisplayDemoUITests.m; sourceTree = "<group>"; };
+		8A955E361F79E7AA000B96B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8A955E431F79EED0000B96B7 /* QSPhotoManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSPhotoManager.h; sourceTree = "<group>"; };
+		8A955E441F79EED0000B96B7 /* QSPhotoManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSPhotoManager.m; sourceTree = "<group>"; };
+		8A955E461F79F02F000B96B7 /* QSAssetModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSAssetModel.h; sourceTree = "<group>"; };
+		8A955E471F79F02F000B96B7 /* QSAssetModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSAssetModel.m; sourceTree = "<group>"; };
+		8AF24D1C1F7A32D100508EBF /* QSPhotosDisplayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSPhotosDisplayViewController.h; sourceTree = "<group>"; };
+		8AF24D1D1F7A32D100508EBF /* QSPhotosDisplayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSPhotosDisplayViewController.m; sourceTree = "<group>"; };
+		8AF24D211F7A332500508EBF /* QSAlbumsDisplayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSAlbumsDisplayViewController.h; sourceTree = "<group>"; };
+		8AF24D221F7A332500508EBF /* QSAlbumsDisplayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSAlbumsDisplayViewController.m; sourceTree = "<group>"; };
+		8AF24D241F7A335800508EBF /* QSPhotoExifInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSPhotoExifInfoViewController.h; sourceTree = "<group>"; };
+		8AF24D251F7A335800508EBF /* QSPhotoExifInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QSPhotoExifInfoViewController.m; sourceTree = "<group>"; };
+		8AF24D2C1F7A3AF900508EBF /* QSPhotoDisplayMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QSPhotoDisplayMacro.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8A955E0A1F79E7AA000B96B7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8A955E221F79E7AA000B96B7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8A955E2D1F79E7AA000B96B7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8A6875F61F7A6D8700C65756 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				8A6875F71F7A6DE900C65756 /* UIView+QS_Layout.h */,
+				8A6875F81F7A6DE900C65756 /* UIView+QS_Layout.m */,
+				8A15CC331F7B4AE7000F6FAE /* NSString+QS_Extension.h */,
+				8A15CC341F7B4AE7000F6FAE /* NSString+QS_Extension.m */,
+				8A15CC3F1F7B7BE8000F6FAE /* UIImage+QS_Gif.h */,
+				8A15CC401F7B7BE8000F6FAE /* UIImage+QS_Gif.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		8A955E041F79E7AA000B96B7 = {
+			isa = PBXGroup;
+			children = (
+				8A955E0F1F79E7AA000B96B7 /* QSPhotoDisplayDemo */,
+				8A955E281F79E7AA000B96B7 /* QSPhotoDisplayDemoTests */,
+				8A955E331F79E7AA000B96B7 /* QSPhotoDisplayDemoUITests */,
+				8A955E0E1F79E7AA000B96B7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8A955E0E1F79E7AA000B96B7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8A955E0D1F79E7AA000B96B7 /* QSPhotoDisplayDemo.app */,
+				8A955E251F79E7AA000B96B7 /* QSPhotoDisplayDemoTests.xctest */,
+				8A955E301F79E7AA000B96B7 /* QSPhotoDisplayDemoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8A955E0F1F79E7AA000B96B7 /* QSPhotoDisplayDemo */ = {
+			isa = PBXGroup;
+			children = (
+				8A955E421F79EE86000B96B7 /* Model */,
+				8AF24D201F7A32F200508EBF /* View */,
+				8AF24D1F1F7A32DF00508EBF /* Controller */,
+				8AF24D271F7A344500508EBF /* Utils */,
+				8A6875F61F7A6D8700C65756 /* Category */,
+				8A955E101F79E7AA000B96B7 /* AppDelegate.h */,
+				8A955E111F79E7AA000B96B7 /* AppDelegate.m */,
+				8A955E191F79E7AA000B96B7 /* Assets.xcassets */,
+				8A955E1E1F79E7AA000B96B7 /* Info.plist */,
+				8A955E1F1F79E7AA000B96B7 /* main.m */,
+			);
+			path = QSPhotoDisplayDemo;
+			sourceTree = "<group>";
+		};
+		8A955E281F79E7AA000B96B7 /* QSPhotoDisplayDemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				8A955E291F79E7AA000B96B7 /* QSPhotoDisplayDemoTests.m */,
+				8A955E2B1F79E7AA000B96B7 /* Info.plist */,
+			);
+			path = QSPhotoDisplayDemoTests;
+			sourceTree = "<group>";
+		};
+		8A955E331F79E7AA000B96B7 /* QSPhotoDisplayDemoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				8A955E341F79E7AA000B96B7 /* QSPhotoDisplayDemoUITests.m */,
+				8A955E361F79E7AA000B96B7 /* Info.plist */,
+			);
+			path = QSPhotoDisplayDemoUITests;
+			sourceTree = "<group>";
+		};
+		8A955E421F79EE86000B96B7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8A955E431F79EED0000B96B7 /* QSPhotoManager.h */,
+				8A955E441F79EED0000B96B7 /* QSPhotoManager.m */,
+				8A6875ED1F7A57FD00C65756 /* QSAlbumModel.h */,
+				8A6875EE1F7A57FD00C65756 /* QSAlbumModel.m */,
+				8A955E461F79F02F000B96B7 /* QSAssetModel.h */,
+				8A955E471F79F02F000B96B7 /* QSAssetModel.m */,
+				8A15CC421F7BE76B000F6FAE /* QSExifModel.h */,
+				8A15CC431F7BE76B000F6FAE /* QSExifModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8AF24D1F1F7A32DF00508EBF /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8AF24D1C1F7A32D100508EBF /* QSPhotosDisplayViewController.h */,
+				8AF24D1D1F7A32D100508EBF /* QSPhotosDisplayViewController.m */,
+				8A15CC361F7B6BF4000F6FAE /* QSPhotoCheckViewController.h */,
+				8A15CC371F7B6BF4000F6FAE /* QSPhotoCheckViewController.m */,
+				8AF24D211F7A332500508EBF /* QSAlbumsDisplayViewController.h */,
+				8AF24D221F7A332500508EBF /* QSAlbumsDisplayViewController.m */,
+				8AF24D241F7A335800508EBF /* QSPhotoExifInfoViewController.h */,
+				8AF24D251F7A335800508EBF /* QSPhotoExifInfoViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8AF24D201F7A32F200508EBF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8A15CC3C1F7B772A000F6FAE /* QSPhotoCheckView.h */,
+				8A15CC3D1F7B772A000F6FAE /* QSPhotoCheckView.m */,
+				8A6875F01F7A660900C65756 /* QSPhotoDisplayCell.h */,
+				8A6875F11F7A660900C65756 /* QSPhotoDisplayCell.m */,
+				8A15CC391F7B755D000F6FAE /* QSPhotoCheckCell.h */,
+				8A15CC3A1F7B755D000F6FAE /* QSPhotoCheckCell.m */,
+				8A6875F31F7A6A9800C65756 /* QSAlbumCell.h */,
+				8A6875F41F7A6A9800C65756 /* QSAlbumCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8AF24D271F7A344500508EBF /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				8AF24D2C1F7A3AF900508EBF /* QSPhotoDisplayMacro.h */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8A955E0C1F79E7AA000B96B7 /* QSPhotoDisplayDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8A955E391F79E7AA000B96B7 /* Build configuration list for PBXNativeTarget "QSPhotoDisplayDemo" */;
+			buildPhases = (
+				8A955E091F79E7AA000B96B7 /* Sources */,
+				8A955E0A1F79E7AA000B96B7 /* Frameworks */,
+				8A955E0B1F79E7AA000B96B7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = QSPhotoDisplayDemo;
+			productName = QSPhotoDisplayDemo;
+			productReference = 8A955E0D1F79E7AA000B96B7 /* QSPhotoDisplayDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8A955E241F79E7AA000B96B7 /* QSPhotoDisplayDemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8A955E3C1F79E7AA000B96B7 /* Build configuration list for PBXNativeTarget "QSPhotoDisplayDemoTests" */;
+			buildPhases = (
+				8A955E211F79E7AA000B96B7 /* Sources */,
+				8A955E221F79E7AA000B96B7 /* Frameworks */,
+				8A955E231F79E7AA000B96B7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8A955E271F79E7AA000B96B7 /* PBXTargetDependency */,
+			);
+			name = QSPhotoDisplayDemoTests;
+			productName = QSPhotoDisplayDemoTests;
+			productReference = 8A955E251F79E7AA000B96B7 /* QSPhotoDisplayDemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		8A955E2F1F79E7AA000B96B7 /* QSPhotoDisplayDemoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8A955E3F1F79E7AA000B96B7 /* Build configuration list for PBXNativeTarget "QSPhotoDisplayDemoUITests" */;
+			buildPhases = (
+				8A955E2C1F79E7AA000B96B7 /* Sources */,
+				8A955E2D1F79E7AA000B96B7 /* Frameworks */,
+				8A955E2E1F79E7AA000B96B7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8A955E321F79E7AA000B96B7 /* PBXTargetDependency */,
+			);
+			name = QSPhotoDisplayDemoUITests;
+			productName = QSPhotoDisplayDemoUITests;
+			productReference = 8A955E301F79E7AA000B96B7 /* QSPhotoDisplayDemoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8A955E051F79E7AA000B96B7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = "申倩倩";
+				TargetAttributes = {
+					8A955E0C1F79E7AA000B96B7 = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+					};
+					8A955E241F79E7AA000B96B7 = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 8A955E0C1F79E7AA000B96B7;
+					};
+					8A955E2F1F79E7AA000B96B7 = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 8A955E0C1F79E7AA000B96B7;
+					};
+				};
+			};
+			buildConfigurationList = 8A955E081F79E7AA000B96B7 /* Build configuration list for PBXProject "QSPhotoDisplayDemo" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8A955E041F79E7AA000B96B7;
+			productRefGroup = 8A955E0E1F79E7AA000B96B7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8A955E0C1F79E7AA000B96B7 /* QSPhotoDisplayDemo */,
+				8A955E241F79E7AA000B96B7 /* QSPhotoDisplayDemoTests */,
+				8A955E2F1F79E7AA000B96B7 /* QSPhotoDisplayDemoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8A955E0B1F79E7AA000B96B7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A955E1A1F79E7AA000B96B7 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8A955E231F79E7AA000B96B7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8A955E2E1F79E7AA000B96B7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8A955E091F79E7AA000B96B7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A15CC411F7B7BE8000F6FAE /* UIImage+QS_Gif.m in Sources */,
+				8AF24D231F7A332500508EBF /* QSAlbumsDisplayViewController.m in Sources */,
+				8A6875F51F7A6A9800C65756 /* QSAlbumCell.m in Sources */,
+				8A955E451F79EED0000B96B7 /* QSPhotoManager.m in Sources */,
+				8AF24D261F7A335800508EBF /* QSPhotoExifInfoViewController.m in Sources */,
+				8A955E481F79F02F000B96B7 /* QSAssetModel.m in Sources */,
+				8AF24D1E1F7A32D100508EBF /* QSPhotosDisplayViewController.m in Sources */,
+				8A955E201F79E7AA000B96B7 /* main.m in Sources */,
+				8A6875F91F7A6DE900C65756 /* UIView+QS_Layout.m in Sources */,
+				8A15CC381F7B6BF4000F6FAE /* QSPhotoCheckViewController.m in Sources */,
+				8A955E121F79E7AA000B96B7 /* AppDelegate.m in Sources */,
+				8A15CC441F7BE76C000F6FAE /* QSExifModel.m in Sources */,
+				8A15CC351F7B4AE8000F6FAE /* NSString+QS_Extension.m in Sources */,
+				8A6875EF1F7A57FD00C65756 /* QSAlbumModel.m in Sources */,
+				8A6875F21F7A660900C65756 /* QSPhotoDisplayCell.m in Sources */,
+				8A15CC3B1F7B755D000F6FAE /* QSPhotoCheckCell.m in Sources */,
+				8A15CC3E1F7B772A000F6FAE /* QSPhotoCheckView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8A955E211F79E7AA000B96B7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A955E2A1F79E7AA000B96B7 /* QSPhotoDisplayDemoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8A955E2C1F79E7AA000B96B7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A955E351F79E7AA000B96B7 /* QSPhotoDisplayDemoUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8A955E271F79E7AA000B96B7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8A955E0C1F79E7AA000B96B7 /* QSPhotoDisplayDemo */;
+			targetProxy = 8A955E261F79E7AA000B96B7 /* PBXContainerItemProxy */;
+		};
+		8A955E321F79E7AA000B96B7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8A955E0C1F79E7AA000B96B7 /* QSPhotoDisplayDemo */;
+			targetProxy = 8A955E311F79E7AA000B96B7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		8A955E371F79E7AA000B96B7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		8A955E381F79E7AA000B96B7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8A955E3A1F79E7AA000B96B7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 532CZ787GY;
+				INFOPLIST_FILE = QSPhotoDisplayDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sqq.QSPhotoDisplayDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8A955E3B1F79E7AA000B96B7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 532CZ787GY;
+				INFOPLIST_FILE = QSPhotoDisplayDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sqq.QSPhotoDisplayDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		8A955E3D1F79E7AA000B96B7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = QSPhotoDisplayDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sqq.QSPhotoDisplayDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QSPhotoDisplayDemo.app/QSPhotoDisplayDemo";
+			};
+			name = Debug;
+		};
+		8A955E3E1F79E7AA000B96B7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = QSPhotoDisplayDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sqq.QSPhotoDisplayDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QSPhotoDisplayDemo.app/QSPhotoDisplayDemo";
+			};
+			name = Release;
+		};
+		8A955E401F79E7AA000B96B7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = QSPhotoDisplayDemoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sqq.QSPhotoDisplayDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = QSPhotoDisplayDemo;
+			};
+			name = Debug;
+		};
+		8A955E411F79E7AA000B96B7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = QSPhotoDisplayDemoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sqq.QSPhotoDisplayDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = QSPhotoDisplayDemo;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8A955E081F79E7AA000B96B7 /* Build configuration list for PBXProject "QSPhotoDisplayDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8A955E371F79E7AA000B96B7 /* Debug */,
+				8A955E381F79E7AA000B96B7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8A955E391F79E7AA000B96B7 /* Build configuration list for PBXNativeTarget "QSPhotoDisplayDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8A955E3A1F79E7AA000B96B7 /* Debug */,
+				8A955E3B1F79E7AA000B96B7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8A955E3C1F79E7AA000B96B7 /* Build configuration list for PBXNativeTarget "QSPhotoDisplayDemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8A955E3D1F79E7AA000B96B7 /* Debug */,
+				8A955E3E1F79E7AA000B96B7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8A955E3F1F79E7AA000B96B7 /* Build configuration list for PBXNativeTarget "QSPhotoDisplayDemoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8A955E401F79E7AA000B96B7 /* Debug */,
+				8A955E411F79E7AA000B96B7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8A955E051F79E7AA000B96B7 /* Project object */;
+}

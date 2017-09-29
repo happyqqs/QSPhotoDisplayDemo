@@ -13,11 +13,11 @@
 #import "QSExifModel.h"
 #import "NSString+QS_Extension.h"
 
-@interface QSPhotoManager () {
-    CGSize _thumbnailSize;
-    CGFloat _screenWidth;
-    CGFloat _screenScale;
-}
+@interface QSPhotoManager ()
+
+@property (nonatomic, assign) CGSize thumbnailSize;
+@property (nonatomic, assign) CGFloat screenWidth;
+@property (nonatomic, assign) CGFloat screenScale;
 
 @end
 
@@ -30,7 +30,6 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         manager = [[QSPhotoManager alloc] init];
-        [manager p_configScreenScale];
     });
     return manager;
 }
@@ -87,13 +86,11 @@
     if (!self.sortAscendingByModificationDate) {
         options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:self.sortAscendingByModificationDate]];
     }
-    
-    PHFetchResult *myPhotoStreamAlbum = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum subtype:PHAssetCollectionSubtypeAlbumMyPhotoStream options:nil];
-    PHFetchResult *smartAlbum = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
-    PHFetchResult *topLevelUserCollections = [PHCollectionList fetchTopLevelUserCollectionsWithOptions:nil];
-    PHFetchResult *syncedAlbums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum subtype:PHAssetCollectionSubtypeAlbumSyncedAlbum options:nil];
-    PHFetchResult *sharedAlbums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum subtype:PHAssetCollectionSubtypeAlbumCloudShared options:nil];
-    NSArray *allAlbums = @[myPhotoStreamAlbum, smartAlbum, topLevelUserCollections, syncedAlbums, sharedAlbums];
+    //获取所有智能相册
+    PHFetchResult *smartAlbums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
+    //获取用户创建的相册
+    PHFetchResult *userAlbums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum subtype:PHAssetCollectionSubtypeSmartAlbumUserLibrary options:nil];
+    NSArray *allAlbums = @[smartAlbums, userAlbums];
     for (PHFetchResult *fetchResult in allAlbums) {
         for (PHAssetCollection *collection in fetchResult) {
             if (![collection isKindOfClass:[PHAssetCollection class]]) {
@@ -103,7 +100,7 @@
             if (result.count < 1) {
                 continue;
             }
-            if ([collection.localizedTitle qs_containsString:@"Hidden"] || [collection.localizedTitle isEqualToString:@"已隐藏"]) {
+            if ([collection.localizedTitle qs_containsString:@"Hidden"] || [collection.localizedTitle qs_containsString:@"Videos"] || [collection.localizedTitle qs_containsString:@"Slo-mo"]) {
                 continue;
             }
             if ([self p_isCameraRollAlbum:collection]) {
@@ -179,7 +176,7 @@
         imageSize = _thumbnailSize;
     } else {
         CGFloat aspectRatio = asset.pixelWidth / (CGFloat)asset.pixelHeight;
-        CGFloat pixelWidth = photoWidth * _screenScale * 1.5;
+        CGFloat pixelWidth = photoWidth * self.screenScale * 1.5;
         // 超宽图片
         if (aspectRatio > 1.8) {
             pixelWidth = pixelWidth * aspectRatio;
@@ -193,6 +190,7 @@
     }
     
     __block UIImage *image;
+    __weak typeof(self) weakSelf = self;
     //
     PHImageRequestOptions *option = [[PHImageRequestOptions alloc] init];
     option.resizeMode = PHImageRequestOptionsResizeModeFast;
@@ -202,7 +200,7 @@
         }
         BOOL downloadFinined = (![[info objectForKey:PHImageCancelledKey] boolValue] && ![info objectForKey:PHImageErrorKey]);
         if (downloadFinined && result) {
-            result = [self p_fixOrientation:result];
+            result = [weakSelf p_fixOrientation:result];
             if (completion) completion(result,info,[[info objectForKey:PHImageResultIsDegradedKey] boolValue]);
         }
         // Download image from iCloud 
@@ -219,11 +217,11 @@
             options.resizeMode = PHImageRequestOptionsResizeModeFast;
             [[PHImageManager defaultManager] requestImageDataForAsset:asset options:options resultHandler:^(NSData *imageData, NSString *dataUTI, UIImageOrientation orientation, NSDictionary *info) {
                 UIImage *resultImage = [UIImage imageWithData:imageData scale:0.1];
-                resultImage = [self p_scaleImage:resultImage toSize:imageSize];
+                resultImage = [weakSelf p_scaleImage:resultImage toSize:imageSize];
                 if (!resultImage) {
                     resultImage = image;
                 }
-                resultImage = [self p_fixOrientation:resultImage];
+                resultImage = [weakSelf p_fixOrientation:resultImage];
                 if (completion) completion(resultImage,info,NO);
             }];
         }
@@ -244,42 +242,38 @@
 }
 
 /// Get Original Photo
-- (int32_t)getOriginalPhotoWithAsset:(PHAsset *)asset completion:(void (^)(UIImage *photo,NSDictionary *info))completion {
-    return [self getOriginalPhotoWithAsset:asset newCompletion:^(UIImage *photo, NSDictionary *info, BOOL isDegraded) {
-        if (completion) {
-            completion(photo,info);
-        }
-    }];
-}
 
-- (int32_t)getOriginalPhotoWithAsset:(PHAsset *)asset newCompletion:(void (^)(UIImage *photo,NSDictionary *info,BOOL isDegraded))completion {
+- (void)getOriginalPhotoWithAsset:(PHAsset *)asset completion:(void (^)(UIImage *photo,NSDictionary *info,BOOL isDegraded))completion {
     PHImageRequestOptions *option = [[PHImageRequestOptions alloc]init];
     option.networkAccessAllowed = YES;
     option.resizeMode = PHImageRequestOptionsResizeModeFast;
-    int32_t imageRequestID = [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeAspectFit options:option resultHandler:^(UIImage *result, NSDictionary *info) {
+    __weak typeof(self) weakSelf = self;
+    [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeAspectFit options:option resultHandler:^(UIImage *result, NSDictionary *info) {
+        __strong typeof(self) strongSelf = weakSelf;
+        if (!strongSelf) {
+            return;
+        }
         BOOL downloadFinined = (![[info objectForKey:PHImageCancelledKey] boolValue] && ![info objectForKey:PHImageErrorKey]);
         if (downloadFinined && result) {
-            result = [self p_fixOrientation:result];
+            result = [weakSelf p_fixOrientation:result];
             BOOL isDegraded = [[info objectForKey:PHImageResultIsDegradedKey] boolValue];
-            if (completion) completion(result,info,isDegraded);
-        }
-    }];
-    return imageRequestID;
-}
-
-- (int32_t)getOriginalPhotoDataWithAsset:(PHAsset *)asset completion:(void (^)(NSData *data,NSDictionary *info,BOOL isDegraded))completion {
-    PHImageRequestOptions *option = [[PHImageRequestOptions alloc] init];
-    option.networkAccessAllowed = YES;
-    option.resizeMode = PHImageRequestOptionsResizeModeFast;
-    int32_t imageRequestID = [[PHImageManager defaultManager] requestImageDataForAsset:asset options:option resultHandler:^(NSData *imageData, NSString *dataUTI, UIImageOrientation orientation, NSDictionary *info) {
-        BOOL downloadFinined = (![[info objectForKey:PHImageCancelledKey] boolValue] && ![info objectForKey:PHImageErrorKey]);
-        if (downloadFinined && imageData) {
             if (completion) {
-                completion(imageData,info,NO);
+                completion(result,info,isDegraded);
             }
         }
     }];
-    return imageRequestID;
+}
+
+- (void)getOriginalPhotoDataWithAsset:(PHAsset *)asset completion:(void (^)(NSData *data,NSDictionary *info,BOOL isDegraded))completion {
+    PHImageRequestOptions *option = [[PHImageRequestOptions alloc] init];
+    option.networkAccessAllowed = YES;
+    option.resizeMode = PHImageRequestOptionsResizeModeFast;
+    [[PHImageManager defaultManager] requestImageDataForAsset:asset options:option resultHandler:^(NSData *imageData, NSString *dataUTI, UIImageOrientation orientation, NSDictionary *info) {
+        BOOL downloadFinined = (![[info objectForKey:PHImageCancelledKey] boolValue] && ![info objectForKey:PHImageErrorKey]);
+        if (downloadFinined && imageData) {
+            if (completion) completion(imageData,info,NO);
+        }
+    }];
 }
 
 #pragma mark - Get Exif Info
@@ -298,6 +292,7 @@
                 completion(model);
             }
         });
+        CFRelease(cImageSource);
     }];
 }
 
@@ -359,13 +354,6 @@
         }
     }
     return newTime;
-}
-
-- (void)p_configScreenScale {
-    _screenScale = 2.0;
-    if (ScreenWidth > 700) {
-        _screenScale = 1.5;
-    }
 }
 
 /// 修正图片转向
@@ -435,7 +423,6 @@
             CGContextDrawImage(ctx, CGRectMake(0,0,aImage.size.width,aImage.size.height), aImage.CGImage);
             break;
     }
-    
     // And now we just create a new UIImage from the drawing context
     CGImageRef cgimg = CGBitmapContextCreateImage(ctx);
     UIImage *img = [UIImage imageWithCGImage:cgimg];
@@ -498,7 +485,15 @@
     _columnNumber = columnNumber;
     CGFloat margin = 4;
     CGFloat itemWH = (_screenWidth - 2 * margin - 4) / columnNumber - margin;
-    _thumbnailSize = CGSizeMake(itemWH * _screenScale, itemWH * _screenScale);
+    _thumbnailSize = CGSizeMake(itemWH * self.screenScale, itemWH * self.screenScale);
+}
+
+- (CGFloat)screenScale {
+    _screenScale = 2.0;
+    if (ScreenWidth > 700) {
+        _screenScale = 1.5;
+    }
+    return _screenScale;
 }
 
 @end

@@ -19,7 +19,6 @@
     return self.frame.origin.x;
 }
 
-
 - (void)setQs_y:(CGFloat)qs_y {
     CGRect rect = self.frame;
     rect.origin.y = qs_y;

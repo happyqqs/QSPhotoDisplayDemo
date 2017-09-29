@@ -18,15 +18,14 @@
 static NSString *photoDisplayCellReuseIdentifier = @"QSPhotoDisplayCell";
 static const CGFloat collectionViewMargin = 2;
 
-@interface QSPhotosDisplayViewController ()<UICollectionViewDelegate, UICollectionViewDataSource> {
-    CGSize _thumbnailSize;
-    CGFloat _offsetItemCount;
-    BOOL _shouldScrollToBottom;
-}
+@interface QSPhotosDisplayViewController ()<UICollectionViewDelegate, UICollectionViewDataSource> 
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) UICollectionViewFlowLayout *layout;
 @property (nonatomic, strong) NSMutableArray<QSAssetModel *> *assetModels;
+@property (nonatomic, assign) BOOL shouldScrollToBottom;
+@property (nonatomic, assign) CGSize thumbnailSize;
+@property (nonatomic, assign) CGFloat offsetItemCount;
 
 @end
 
@@ -40,6 +39,7 @@ static const CGFloat collectionViewMargin = 2;
     self.navigationItem.title = self.albumModel.name;
     _shouldScrollToBottom = YES;
     [self p_fetchAssetModels];
+    [self.view addSubview:self.collectionView];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didChangeStatusBarOrientationNotification:) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
 }
 
@@ -50,9 +50,8 @@ static const CGFloat collectionViewMargin = 2;
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-   
-    _collectionView.frame = self.view.frame;
     CGFloat itemWH = (self.view.qs_width - (self.columnNumber + 1) * collectionViewMargin) / self.columnNumber;
+    _collectionView.frame = self.view.frame;
     _layout.itemSize = CGSizeMake(itemWH, itemWH);
     _layout.minimumInteritemSpacing = collectionViewMargin;
     _layout.minimumLineSpacing = collectionViewMargin;
@@ -69,17 +68,21 @@ static const CGFloat collectionViewMargin = 2;
     [super viewWillAppear:animated];
 }
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 #pragma mark - Notification
 
 - (void)didChangeStatusBarOrientationNotification:(NSNotification *)noti {
-    
+    _offsetItemCount = _collectionView.contentOffset.y / (_layout.itemSize.height + _layout.minimumLineSpacing);
 }
 
 #pragma mark - Private Functions
 
 - (void)p_fetchAssetModels {
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        if (!self.sortAscendingByModificationDate && _isFirstAppear && iOS8Later) {
+        if (!_sortAscendingByModificationDate && _isFirstAppear && iOS8Later) {
             [[QSPhotoManager manager] getCameraRollAlbumWithCompletion:^(QSAlbumModel *model) {
                 _albumModel = model;
                 _assetModels = [NSMutableArray arrayWithArray:model.assetModels];
@@ -94,22 +97,7 @@ static const CGFloat collectionViewMargin = 2;
             }
         }
     });
-    [self p_configCollectionView];
-}
-
-- (void)p_configCollectionView {
-    if (_collectionView == nil) {
-        _layout = [[UICollectionViewFlowLayout alloc] init];
-        _collectionView = [[UICollectionView alloc] initWithFrame:self.view.frame collectionViewLayout:_layout];
-        _collectionView.backgroundColor = [UIColor whiteColor];
-        _collectionView.dataSource = self;
-        _collectionView.delegate = self;
-        _collectionView.alwaysBounceHorizontal = NO;
-        _collectionView.contentInset = UIEdgeInsetsMake(collectionViewMargin, collectionViewMargin, collectionViewMargin, collectionViewMargin);
-        [self.view addSubview:_collectionView];
-        [_collectionView registerClass:[QSPhotoDisplayCell class] forCellWithReuseIdentifier:photoDisplayCellReuseIdentifier];
-    }
-    [_collectionView reloadData];
+    [self.collectionView reloadData];
 }
 
 - (void)p_scrollCollectionViewToBottom {
@@ -148,6 +136,22 @@ static const CGFloat collectionViewMargin = 2;
     photoCheckVC.currentIndex = indexPath.row;
     photoCheckVC.assetModels = _assetModels;
     [self.navigationController showViewController:photoCheckVC sender:nil];
+}
+
+#pragma mark - Setter && Getter
+
+- (UICollectionView *)collectionView {
+    if (_collectionView == nil) {
+        _layout = [[UICollectionViewFlowLayout alloc] init];
+        _collectionView = [[UICollectionView alloc] initWithFrame:self.view.frame collectionViewLayout:_layout];
+        _collectionView.backgroundColor = [UIColor whiteColor];
+        _collectionView.dataSource = self;
+        _collectionView.delegate = self;
+        _collectionView.alwaysBounceHorizontal = NO;
+        _collectionView.contentInset = UIEdgeInsetsMake(collectionViewMargin, collectionViewMargin, collectionViewMargin, collectionViewMargin);
+        [_collectionView registerClass:[QSPhotoDisplayCell class] forCellWithReuseIdentifier:photoDisplayCellReuseIdentifier];
+    }
+    return _collectionView;
 }
 
 @end

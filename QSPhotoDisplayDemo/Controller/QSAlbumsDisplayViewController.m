@@ -11,13 +11,14 @@
 #import "QSPhotoManager.h"
 #import "QSAlbumModel.h"
 #import "QSAlbumCell.h"
+#import "UIView+QS_Layout.h"
 
 static NSString *albumCellReuseIdentifier = @"SAlbumCell";
 static const NSInteger defaultColumnNumber = 4;
 
-@interface QSAlbumsDisplayViewController ()<UITableViewDelegate, UITableViewDataSource> {
-    UITableView *_albumsTableView;
-}
+@interface QSAlbumsDisplayViewController ()<UITableViewDelegate, UITableViewDataSource>
+
+@property (nonatomic, strong) UITableView *albumsTableView;
 @property (nonatomic, strong) NSMutableArray *albumsArray;
 
 @end
@@ -30,29 +31,39 @@ static const NSInteger defaultColumnNumber = 4;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"相簿";
+    [self.view addSubview:self.albumsTableView];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self p_configTableView];
+    [self p_fetchAllAlbums];
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    CGFloat top = 0;
+    CGFloat tableViewHeight = 0;
+    CGFloat naviBarHeight = self.navigationController.navigationBar.qs_height;
+    BOOL isStatusBarHidden = [UIApplication sharedApplication].isStatusBarHidden;
+    if (self.navigationController.navigationBar.isTranslucent) {
+        top = naviBarHeight;
+        if (!isStatusBarHidden) {
+            top += 20;
+        }
+        tableViewHeight = self.view.qs_height - top;
+    } else {
+        tableViewHeight = self.view.qs_height;
+    }
+    _albumsTableView.frame = CGRectMake(0, top, self.view.qs_width, tableViewHeight);
 }
 
 #pragma mark - Private Functions
 
-- (void)p_configTableView {
+- (void)p_fetchAllAlbums {
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         [[QSPhotoManager manager] getAllAlbumsWithCompletion:^(NSArray<QSAlbumModel *> *models) {
             _albumsArray = [NSMutableArray arrayWithArray:models];
             dispatch_async(dispatch_get_main_queue(), ^{
-                if (!_albumsTableView) {
-                    _albumsTableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
-                    _albumsTableView.rowHeight = 70;
-                    _albumsTableView.tableFooterView = [[UIView alloc] init];
-                    _albumsTableView.dataSource = self;
-                    _albumsTableView.delegate = self;
-                    [_albumsTableView registerClass:[QSAlbumCell class] forCellReuseIdentifier:albumCellReuseIdentifier];
-                    [self.view addSubview:_albumsTableView];
-                }
                 [_albumsTableView reloadData];
             });
         }];
@@ -87,6 +98,18 @@ static const NSInteger defaultColumnNumber = 4;
         return defaultColumnNumber;
     }
     return _columnNumber;
+}
+
+- (UITableView *)albumsTableView {
+    if (_albumsTableView == nil) {
+        _albumsTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+        _albumsTableView.rowHeight = 70;
+        _albumsTableView.tableFooterView = [[UIView alloc] init];
+        _albumsTableView.dataSource = self;
+        _albumsTableView.delegate = self;
+        [_albumsTableView registerClass:[QSAlbumCell class] forCellReuseIdentifier:albumCellReuseIdentifier];
+    }
+    return _albumsTableView;
 }
 
 @end

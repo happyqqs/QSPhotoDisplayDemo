@@ -20,40 +20,15 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
-    if (self) {
-        _scrollView = [[UIScrollView alloc] init];
-        _scrollView.bouncesZoom = YES;
-        _scrollView.maximumZoomScale = 2.5;
-        _scrollView.minimumZoomScale = 1.0;
-        _scrollView.multipleTouchEnabled = YES;
-        _scrollView.delegate = self;
-        _scrollView.scrollsToTop = NO;
-        _scrollView.showsHorizontalScrollIndicator = NO;
-        _scrollView.showsVerticalScrollIndicator = YES;
-        _scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        _scrollView.delaysContentTouches = NO;
-        _scrollView.canCancelContentTouches = YES;
-        _scrollView.alwaysBounceVertical = NO;
-        [self addSubview:_scrollView];
-        
-        _imageContainerView = [[UIView alloc] init];
-        _imageContainerView.clipsToBounds = YES;
-        _imageContainerView.contentMode = UIViewContentModeScaleAspectFill;
-        [_scrollView addSubview:_imageContainerView];
-        
-        _imageView = [[UIImageView alloc] init];
-        _imageView.backgroundColor = [UIColor colorWithWhite:1.000 alpha:0.500];
-        _imageView.contentMode = UIViewContentModeScaleAspectFill;
-        _imageView.clipsToBounds = YES;
-        [_imageContainerView addSubview:_imageView];
-        
-        UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTap:)];
-        [self addGestureRecognizer:tap1];
-        UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTap:)];
-        tap2.numberOfTapsRequired = 2;
-        [tap1 requireGestureRecognizerToFail:tap2];
-        [self addGestureRecognizer:tap2];
-    }
+    [self.imageContainerView addSubview:self.imageView];
+    [self.scrollView addSubview:self.imageContainerView];
+    [self addSubview:self.scrollView];
+    UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTap:)];
+    [self addGestureRecognizer:tap1];
+    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTap:)];
+    tap2.numberOfTapsRequired = 2;
+    [tap1 requireGestureRecognizerToFail:tap2];
+    [self addGestureRecognizer:tap2];
     return self;
 }
 
@@ -142,15 +117,16 @@
 - (void)setAssetModel:(QSAssetModel *)assetModel {
     _assetModel = assetModel;
     [_scrollView setZoomScale:1.0 animated:NO];
+    __weak typeof(self) weakSelf = self;
     if (assetModel.type == QSAssetTypePhotoGif) {
         // 先显示缩略图
-        [[QSPhotoManager manager] getOriginalPhotoWithAsset:assetModel.asset completion:^(UIImage *photo, NSDictionary *info) {
-            self.imageView.image = photo;
-            [self p_resizeSubviews];
+        [[QSPhotoManager manager] getOriginalPhotoWithAsset:assetModel.asset completion:^(UIImage *photo, NSDictionary *info, BOOL isDegraded) {
+            weakSelf.imageView.image = photo;
+            [weakSelf p_resizeSubviews];
             // 再显示gif动图
             [[QSPhotoManager manager] getOriginalPhotoDataWithAsset:assetModel.asset completion:^(NSData *data, NSDictionary *info, BOOL isDegraded) {
-                self.imageView.image = [UIImage qs_animatedGIFWithData:data];
-                [self p_resizeSubviews];
+                weakSelf.imageView.image = [UIImage qs_animatedGIFWithData:data];
+                [weakSelf p_resizeSubviews];
             }];
         }];
     } else {
@@ -163,11 +139,52 @@
         [[PHImageManager defaultManager] cancelImageRequest:self.imageRequestID];
     }
     _asset = asset;
-    self.imageRequestID = [[QSPhotoManager manager] getOriginalPhotoWithAsset:asset completion:^(UIImage *photo, NSDictionary *info) {
-        if (![asset isEqual:_asset]) return;
-        self.imageView.image = photo;
-        [self p_resizeSubviews];
+    __weak typeof(self) weakSelf = self;
+    
+    [[QSPhotoManager manager] getOriginalPhotoWithAsset:asset completion:^(UIImage *photo, NSDictionary *info, BOOL isDegraded) {
+        if (![asset isEqual:_asset]) {
+            return;
+        }
+        weakSelf.imageView.image = photo;
+        [weakSelf p_resizeSubviews];
     }];
 }
 
+- (UIScrollView *)scrollView {
+    if (_scrollView == nil) {
+        _scrollView = [[UIScrollView alloc] init];
+        _scrollView.bouncesZoom = YES;
+        _scrollView.maximumZoomScale = 2.5;
+        _scrollView.minimumZoomScale = 1.0;
+        _scrollView.multipleTouchEnabled = YES;
+        _scrollView.delegate = self;
+        _scrollView.scrollsToTop = NO;
+        _scrollView.showsHorizontalScrollIndicator = NO;
+        _scrollView.showsVerticalScrollIndicator = YES;
+        _scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        _scrollView.delaysContentTouches = NO;
+        _scrollView.canCancelContentTouches = YES;
+        _scrollView.alwaysBounceVertical = NO;
+    }
+    return _scrollView;
+}
+
+- (UIView *)imageContainerView {
+    if (_imageContainerView == nil) {
+        _imageContainerView = [[UIView alloc] init];
+        _imageContainerView.clipsToBounds = YES;
+        _imageContainerView.contentMode = UIViewContentModeScaleAspectFill;
+    }
+    return _imageContainerView;
+}
+
+- (UIImageView *)imageView {
+    if (_imageView == nil) {
+        _imageView = [[UIImageView alloc] init];
+        _imageView.backgroundColor = [UIColor colorWithWhite:1.000 alpha:0.500];
+        _imageView.contentMode = UIViewContentModeScaleAspectFill;
+        _imageView.clipsToBounds = YES;
+    }
+    return _imageView;
+}
 @end

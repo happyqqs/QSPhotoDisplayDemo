@@ -19,6 +19,8 @@
 
 @implementation QSPhotoExifInfoViewController
 
+#pragma mark - Life Cycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 }
@@ -38,7 +40,6 @@
     return _detailInfo.count;
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellReuseIdentifier = @"UITableViewCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellReuseIdentifier];
@@ -50,7 +51,6 @@
 
     return cell;
 }
-
 
 #pragma mark - Getter && Setter
 
@@ -112,7 +112,7 @@
     self.tempString = [NSString stringWithFormat:@"%@", [exifModel.exif.iSOSpeedRatings qs_descriptionWithSeparator:@""]];
     [_detailInfo addObject:@[@"感光度", _tempString]];
     self.tempString = [exifModel.exif.lightSource stringValue];
-    [_detailInfo addObject:@[@"光源（白平衡）", _tempString]];
+    [_detailInfo addObject:@[@"光源", _tempString]];
     self.tempString = [exifModel.exif.meteringMode stringValue];
     [_detailInfo addObject:@[@"测光方式", _tempString]];
     self.tempString = exifModel.exif.lensMake;

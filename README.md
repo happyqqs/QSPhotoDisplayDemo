@@ -3,4 +3,4 @@
 ## 效果截图  
 ![效果截图](https://github.com/happyqqs/QSPhotoDisplayDemo/blob/master/DemoPreviewPicture.png)
 ## 效果动图
-<img src="https://github.com/happyqqs/QSPhotoDisplayDemo/blob/master/GifPreview.GIF" width = "50%" alt="效果动图" align=center />
+![效果动图](https://github.com/happyqqs/QSPhotoDisplayDemo/blob/master/GifPreview.GIF)

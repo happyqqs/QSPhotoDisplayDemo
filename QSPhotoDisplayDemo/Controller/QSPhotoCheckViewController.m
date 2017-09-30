@@ -4,7 +4,7 @@
 //
 //  Created by qqs on 2017/9/27.
 //  Copyright © 2017年 申倩倩. All rights reserved.
-//
+//  展示单张照片详情
 
 #import "QSPhotoCheckViewController.h"
 #import "QSPhotoExifInfoViewController.h"
@@ -108,14 +108,14 @@ static NSString *photoCheckCellReuseIdentifier = @"QSPhotoCheckCell";
 }
 
 #pragma mark - Private Functions
-
+// 单击照片隐藏或显示导航栏
 - (void)p_didTapPhotoCheckCell {
     self.isNavBarHidden = !self.isNavBarHidden;
     [self.navigationController setNavigationBarHidden:self.isNavBarHidden animated:NO];
 }
 
 #pragma mark - Button Actions
-
+// 查看Exif信息
 - (void)checkExifInfo {
     QSPhotoExifInfoViewController *exifInfoVC = [[QSPhotoExifInfoViewController alloc] init];
     __weak typeof(self) weakSelf = self;
@@ -133,7 +133,7 @@ static NSString *photoCheckCellReuseIdentifier = @"QSPhotoCheckCell";
 }
 
 #pragma mark - Setter && Getter
-
+// 懒加载
 - (UICollectionView *)collectionView {
     if (_collectionView == nil) {
         _layout = [[UICollectionViewFlowLayout alloc] init];

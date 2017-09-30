@@ -4,7 +4,7 @@
 //
 //  Created by qqs on 2017/9/26.
 //  Copyright © 2017年 申倩倩. All rights reserved.
-//
+//  展示照片列表
 
 #import "QSPhotosDisplayViewController.h"
 #import "QSPhotoCheckViewController.h"
@@ -79,7 +79,7 @@ static const CGFloat collectionViewMargin = 2;
 }
 
 #pragma mark - Private Functions
-
+// 获取该相簿内资产数据
 - (void)p_fetchAssetModels {
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         if (!_sortAscendingByModificationDate && _isFirstAppear && iOS8Later) {
@@ -99,7 +99,7 @@ static const CGFloat collectionViewMargin = 2;
     });
     [self.collectionView reloadData];
 }
-
+// 滑动到底部
 - (void)p_scrollCollectionViewToBottom {
     if (_shouldScrollToBottom && _assetModels.count > 0) {
         NSInteger item = _assetModels.count - 1;
@@ -130,7 +130,7 @@ static const CGFloat collectionViewMargin = 2;
 }
 
 #pragma mark - UICollectionViewDelegate
-
+// 点击照片展示大图
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     QSPhotoCheckViewController *photoCheckVC = [[QSPhotoCheckViewController alloc] init];
     photoCheckVC.currentIndex = indexPath.row;

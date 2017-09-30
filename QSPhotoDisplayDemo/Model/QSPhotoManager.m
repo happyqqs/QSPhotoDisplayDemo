@@ -61,7 +61,7 @@
 }
 
 #pragma mark - Get Albums
-
+/// Get camera roll album 获取相机胶卷相簿
 - (void)getCameraRollAlbumWithCompletion:(void (^)(QSAlbumModel *model))completion{
     __block QSAlbumModel *model;
     PHFetchOptions *option = [[PHFetchOptions alloc] init];
@@ -79,7 +79,7 @@
         }
     }
 }
-
+/// Get all albums 获取所有相簿
 - (void)getAllAlbumsWithCompletion:(void (^)(NSArray<QSAlbumModel *> *models))completion {
     NSMutableArray *albumsArray = [NSMutableArray array];
     PHFetchOptions *options = [[PHFetchOptions alloc] init];
@@ -116,7 +116,7 @@
 }
 
 #pragma mark - Get Assets
-
+/// Get all assets from PHFetchResult
 - (void)getAssetsFromFetchResult:(PHFetchResult *)fetchResult completion:(void (^)(NSArray<QSAssetModel *> *))completion {
     NSMutableArray *assetsArray = [NSMutableArray array];
     [fetchResult enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -129,7 +129,7 @@
         completion(assetsArray);
     }
 }
-/// Get asset at index
+/// Get asset at index 获取指定索引的asset
 - (void)getAssetFromFetchResult:(PHFetchResult *)fetchResult atIndex:(NSInteger)index completion:(void (^)(QSAssetModel *))completion {
     PHAsset *asset;
     @try {
@@ -148,7 +148,6 @@
 }
 
 #pragma mark - Get Photo
-
 /// Get photo 获得照片本身
 - (int32_t)getPhotoWithAsset:(PHAsset *)asset completion:(void (^)(UIImage *, NSDictionary *, BOOL isDegraded))completion {
     CGFloat fullScreenWidth = _screenWidth;
@@ -194,6 +193,7 @@
     //
     PHImageRequestOptions *option = [[PHImageRequestOptions alloc] init];
     option.resizeMode = PHImageRequestOptionsResizeModeFast;
+    // 通过asset获取图像
     int32_t imageRequestID = [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:imageSize contentMode:PHImageContentModeAspectFill options:option resultHandler:^(UIImage *result, NSDictionary *info) {
         if (result) {
             image = result;
@@ -203,7 +203,7 @@
             result = [weakSelf p_fixOrientation:result];
             if (completion) completion(result,info,[[info objectForKey:PHImageResultIsDegradedKey] boolValue]);
         }
-        // Download image from iCloud 
+        // Download image from iCloud 从iCloud下载图像
         if ([info objectForKey:PHImageResultIsInCloudKey] && !result && networkAccessAllowed) {
             PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
             options.progressHandler = ^(double progress, NSError *error, BOOL *stop, NSDictionary *info) {
@@ -241,8 +241,7 @@
     }];
 }
 
-/// Get Original Photo
-
+/// Get Original Photo 获取原图
 - (void)getOriginalPhotoWithAsset:(PHAsset *)asset completion:(void (^)(UIImage *photo,NSDictionary *info,BOOL isDegraded))completion {
     PHImageRequestOptions *option = [[PHImageRequestOptions alloc]init];
     option.networkAccessAllowed = YES;
@@ -263,7 +262,7 @@
         }
     }];
 }
-
+// 获取原图ImageData
 - (void)getOriginalPhotoDataWithAsset:(PHAsset *)asset completion:(void (^)(NSData *data,NSDictionary *info,BOOL isDegraded))completion {
     PHImageRequestOptions *option = [[PHImageRequestOptions alloc] init];
     option.networkAccessAllowed = YES;
@@ -277,7 +276,7 @@
 }
 
 #pragma mark - Get Exif Info
-
+// 由asset获取Exif信息
 - (void)getExifModelWithAsset:(PHAsset *)asset completion:(void (^)(QSExifModel *exifModel)) completion{
     PHImageRequestOptions *option = [[PHImageRequestOptions alloc] init];
     option.networkAccessAllowed = YES;
@@ -297,7 +296,7 @@
 }
 
 #pragma mark - Get Asset Type
-
+// 由asset获取资源类型
 - (QSAssetType)getAssetType:(PHAsset *)asset {
     QSAssetType type = QSAssetTypePhoto;
     PHAsset *phAsset = (PHAsset *)asset;
@@ -314,11 +313,11 @@
 }
 
 #pragma mark - Private Functions
-
+// 判断是否为相机胶卷相簿
 - (BOOL)p_isCameraRollAlbum:(PHAssetCollection *)assetCollection {
     return assetCollection.assetCollectionSubtype == PHAssetCollectionSubtypeSmartAlbumUserLibrary;
 }
-
+// 由PHFetchResult获得QSAlbumModel
 - (QSAlbumModel *)p_albumModelWithResult:(PHFetchResult *)fetchResult name:(NSString *)name isCameraRoll:(BOOL)isCameraRoll {
     QSAlbumModel *model = [[QSAlbumModel alloc] init];
     model.fetchResult = fetchResult;
@@ -327,7 +326,7 @@
     model.count = fetchResult.count;
     return model;
 }
-
+// 由PHAsset获得QSAssetModel
 - (QSAssetModel *)p_assetModelWithAsset:(PHAsset *)asset {
     QSAssetModel *model;
     QSAssetType type = [self getAssetType:asset];
@@ -337,7 +336,7 @@
     model = [QSAssetModel modelWithAsset:asset type:type timeLength:timeLength];
     return model;
 }
-
+// 获取时常（视频文件用）
 - (NSString *)p_getNewTimeFromDurationSecond:(NSInteger)duration {
     NSString *newTime;
     if (duration < 10) {
@@ -358,7 +357,9 @@
 
 /// 修正图片转向
 - (UIImage *)p_fixOrientation:(UIImage *)aImage {
-    if (!self.shouldFixOrientation) return aImage;
+    if (!self.shouldFixOrientation) {
+        return aImage;
+    }
     // No-op if the orientation is already correct
     if (aImage.imageOrientation == UIImageOrientationUp)
         return aImage;
@@ -430,7 +431,7 @@
     CGImageRelease(cgimg);
     return img;
 }
-
+// 获取指定大小的图片
 - (UIImage *)p_scaleImage:(UIImage *)image toSize:(CGSize)size {
     if (image.size.width > size.width) {
         UIGraphicsBeginImageContext(size);
@@ -442,14 +443,13 @@
         return image;
     }
 }
-
+// 获取旋转方向
 - (ALAssetOrientation)p_orientationFromImage:(UIImage *)image {
     NSInteger orientation = image.imageOrientation;
     return orientation;
 }
-
-- (NSString *)p_transformAblumTitle:(NSString *)title
-{
+// 翻译相簿名称
+- (NSString *)p_transformAblumTitle:(NSString *)title {
     if ([title isEqualToString:@"Slo-mo"]) {
         return @"慢动作";
     } else if ([title isEqualToString:@"Recently Added"]) {

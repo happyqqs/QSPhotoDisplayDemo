@@ -4,7 +4,7 @@
 //
 //  Created by qqs on 2017/9/26.
 //  Copyright © 2017年 申倩倩. All rights reserved.
-//
+//  展示相簿列表
 
 #import "QSAlbumsDisplayViewController.h"
 #import "QSPhotosDisplayViewController.h"
@@ -61,6 +61,7 @@ static const NSInteger defaultColumnNumber = 4;
 
 - (void)p_fetchAllAlbums {
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        // 获取所有相簿
         [[QSPhotoManager manager] getAllAlbumsWithCompletion:^(NSArray<QSAlbumModel *> *models) {
             _albumsArray = [NSMutableArray arrayWithArray:models];
             dispatch_async(dispatch_get_main_queue(), ^{

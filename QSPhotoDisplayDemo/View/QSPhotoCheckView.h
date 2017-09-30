@@ -4,7 +4,7 @@
 //
 //  Created by qqs on 2017/9/27.
 //  Copyright © 2017年 申倩倩. All rights reserved.
-//
+//  单张照片详情查看视图
 
 #import <UIKit/UIKit.h>
 #import <Photos/Photos.h>

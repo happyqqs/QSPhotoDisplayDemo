@@ -4,7 +4,7 @@
 //
 //  Created by qqs on 2017/9/26.
 //  Copyright © 2017年 申倩倩. All rights reserved.
-//
+//  照片列表展示cell
 
 #import "QSPhotoDisplayCell.h"
 #import <Photos/Photos.h>
@@ -29,12 +29,9 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     _imageView.frame = CGRectMake(0, 0, self.qs_width, self.qs_height);
-    
-    
     _bottomView.frame = CGRectMake(0, self.qs_height - 17, self.qs_width, 17);
     _videoImgView.frame = CGRectMake(8, 0, 17, 17);
     _timeLength.frame = CGRectMake(self.videoImgView.qs_right, 0, self.qs_width - self.videoImgView.qs_right - 5, 17);
-    
     self.type = (NSInteger)self.assetModel.type;
 }
 
@@ -65,7 +62,6 @@
     }
     return _imageView;
 }
-
 
 - (UIImageView *)videoImgView {
     if (_videoImgView == nil) {

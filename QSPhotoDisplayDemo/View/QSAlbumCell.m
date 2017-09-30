@@ -4,7 +4,7 @@
 //
 //  Created by qqs on 2017/9/26.
 //  Copyright © 2017年 申倩倩. All rights reserved.
-//
+//  相簿列表cell
 
 #import "QSAlbumCell.h"
 #import "QSAlbumModel.h"
@@ -48,6 +48,7 @@
     NSAttributedString *countString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"  (%zd)",model.count] attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16],NSForegroundColorAttributeName:[UIColor lightGrayColor]}];
     [nameString appendAttributedString:countString];
     self.titleLabel.attributedText = nameString;
+    //获取封面图
     [[QSPhotoManager manager] getPostImageWithAlbumModel:model completion:^(UIImage *postImage) {
         self.posterImageView.image = postImage;
     }];

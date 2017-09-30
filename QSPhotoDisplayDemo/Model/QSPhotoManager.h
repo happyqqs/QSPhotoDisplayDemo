@@ -56,10 +56,11 @@
 - (void)getOriginalPhotoWithAsset:(PHAsset *)asset completion:(void (^)(UIImage *photo,NSDictionary *info,BOOL isDegraded))completion;
 - (void)getOriginalPhotoDataWithAsset:(PHAsset *)asset completion:(void (^)(NSData *data,NSDictionary *info,BOOL isDegraded))completion;
 #pragma mark - Get Asset Type
-/// 获取asset的资源类型
+/// Get assat type  获取asset的资源类型
 - (QSAssetType)getAssetType:(PHAsset *)asset;
 
 #pragma mark - Get Exif
+/// Get exif model 获取Exif信息
 - (void)getExifModelWithAsset:(PHAsset *)asset completion:(void (^)(QSExifModel *exifModel)) completion;
 
 @end

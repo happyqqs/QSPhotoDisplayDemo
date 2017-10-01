@@ -65,7 +65,7 @@ static const NSInteger defaultColumnNumber = 4;
         [[QSPhotoManager manager] getAllAlbumsWithCompletion:^(NSArray<QSAlbumModel *> *models) {
             _albumsArray = [NSMutableArray arrayWithArray:models];
             dispatch_async(dispatch_get_main_queue(), ^{
-                [_albumsTableView reloadData];
+                [self.albumsTableView reloadData];
             });
         }];
     });

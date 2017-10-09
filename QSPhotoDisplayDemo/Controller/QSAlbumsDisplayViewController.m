@@ -54,7 +54,7 @@ static const NSInteger defaultColumnNumber = 4;
     } else {
         tableViewHeight = self.view.qs_height;
     }
-    _albumsTableView.frame = CGRectMake(0, top, self.view.qs_width, tableViewHeight);
+    self.albumsTableView.frame = CGRectMake(0, top, self.view.qs_width, tableViewHeight);
 }
 
 #pragma mark - Private Functions
